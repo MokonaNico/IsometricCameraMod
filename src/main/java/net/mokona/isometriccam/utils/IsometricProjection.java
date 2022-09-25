@@ -2,12 +2,34 @@ package net.mokona.isometriccam.utils;
 
 import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.phys.Vec3;
 
 public class IsometricProjection {
 
     private static final Minecraft MC = Minecraft.getInstance();
     public static boolean isometric = false;
-    public static float isometricViewLength = 100;
+
+    public static float isometricViewLength = 75;
+    public static float xRot = 45;
+    public static float yRot = 135;
+
+    public static void zoom(double z){
+        IsometricProjection.rotateX(1);
+        if(IsometricProjection.isometricViewLength - z*5 < 25){
+            IsometricProjection.isometricViewLength = 25;
+        } else {
+            IsometricProjection.isometricViewLength -= z*5;
+        }
+        IsometricProjection.rotateX(-1);
+    }
+
+    public static void rotateX(double rot){
+        IsometricProjection.xRot += rot;
+    }
+
+    public static void rotateY(double rot){
+        IsometricProjection.yRot += rot;
+    }
 
     public static Matrix4f getIsometricProjection() {
         int w = MC.getWindow().getWidth();

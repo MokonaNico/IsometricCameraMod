@@ -3,7 +3,8 @@
   "package": "net.mokona.isometriccam.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "IsometricMixin"
+    "IsometricMixin",
+    "CameraMixin"
   ],
   "injectors": {
     "defaultRequire": 1
