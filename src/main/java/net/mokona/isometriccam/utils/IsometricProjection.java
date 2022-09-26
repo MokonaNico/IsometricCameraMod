@@ -13,24 +13,6 @@ public class IsometricProjection {
     public static float xRot = 45;
     public static float yRot = 135;
 
-    public static void zoom(double z){
-        IsometricProjection.rotateX(1);
-        if(IsometricProjection.isometricViewLength - z*5 < 25){
-            IsometricProjection.isometricViewLength = 25;
-        } else {
-            IsometricProjection.isometricViewLength -= z*5;
-        }
-        IsometricProjection.rotateX(-1);
-    }
-
-    public static void rotateX(double rot){
-        IsometricProjection.xRot += rot;
-    }
-
-    public static void rotateY(double rot){
-        IsometricProjection.yRot += rot;
-    }
-
     public static Matrix4f getIsometricProjection() {
         int w = MC.getWindow().getWidth();
         int h = MC.getWindow().getHeight();
