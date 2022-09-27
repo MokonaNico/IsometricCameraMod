@@ -51,7 +51,6 @@ public class IsometricViewHandler {
 
     @SubscribeEvent
     public void onRenderLevelLastEvent(RenderLevelLastEvent event){
-        System.out.println(IsometricProjection.isometricViewLength + " " + zoomTarget);
         if(IsometricProjection.isometric){
             if(Math.abs(IsometricProjection.isometricViewLength - zoomTarget) >= 0.01){
                 IsometricProjection.isometricViewLength = lerp(IsometricProjection.isometricViewLength, zoomTarget,0.1f);

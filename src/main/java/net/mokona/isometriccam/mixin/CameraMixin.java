@@ -11,10 +11,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Camera.class)
-public class CameraMixin {
+public abstract class  CameraMixin {
     @Shadow
     private float xRot;
     @Shadow
@@ -22,7 +23,11 @@ public class CameraMixin {
     @Shadow
     private Vec3 position;
     @Shadow
+    private boolean detached;
+    @Shadow
     protected void move(double pDistanceOffset, double pVerticalOffset, double pHorizontalOffset) {}
+    @Shadow
+    protected abstract double getMaxZoom(double pStartingDistance);
 
     @Inject(
             method = "setup(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;ZZF)V",
@@ -35,4 +40,15 @@ public class CameraMixin {
             this.yRot = IsometricProjection.yRot;
         }
     }
+
+    /*
+    @ModifyVariable(
+            method = "setup(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;ZZF)V",
+            at = @At("HEAD"),
+            ordinal = 2
+    )
+    private boolean injected(boolean x) {
+        return false;
+    }
+    */
 }
