@@ -23,32 +23,17 @@ public abstract class  CameraMixin {
     @Shadow
     private Vec3 position;
     @Shadow
-    private boolean detached;
-    @Shadow
-    protected void move(double pDistanceOffset, double pVerticalOffset, double pHorizontalOffset) {}
-    @Shadow
-    protected abstract double getMaxZoom(double pStartingDistance);
+    private Entity entity;
 
     @Inject(
             method = "setup(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;ZZF)V",
-            at = @At("TAIL"),
-            cancellable = true
+            at = @At("TAIL")
     )
     private void onSetup(BlockGetter pLevel, Entity pEntity, boolean pDetached, boolean pThirdPersonReverse, float pPartialTick, CallbackInfo ci) {
         if(IsometricProjection.isometric){
             this.xRot = IsometricProjection.xRot;
             this.yRot = IsometricProjection.yRot;
+            this.position = entity.getPosition(0);
         }
     }
-
-    /*
-    @ModifyVariable(
-            method = "setup(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;ZZF)V",
-            at = @At("HEAD"),
-            ordinal = 2
-    )
-    private boolean injected(boolean x) {
-        return false;
-    }
-    */
 }

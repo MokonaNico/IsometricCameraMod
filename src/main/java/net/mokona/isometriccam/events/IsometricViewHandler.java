@@ -54,6 +54,7 @@ public class IsometricViewHandler {
         if(IsometricProjection.isometric){
             if(Math.abs(IsometricProjection.isometricViewLength - zoomTarget) >= 0.01){
                 IsometricProjection.isometricViewLength = lerp(IsometricProjection.isometricViewLength, zoomTarget,0.1f);
+                event.getLevelRenderer().needsUpdate();
             }
             if(Math.abs(IsometricProjection.xRot - xRotTarget) >= 0.01){
                 IsometricProjection.xRot = lerp(IsometricProjection.xRot, xRotTarget,0.1f);
@@ -61,6 +62,7 @@ public class IsometricViewHandler {
             if(Math.abs(IsometricProjection.yRot - yRotTarget) >= 0.01){
                 IsometricProjection.yRot = lerp(IsometricProjection.yRot, yRotTarget,0.1f);
             }
+
         }
     }
 
@@ -72,8 +74,9 @@ public class IsometricViewHandler {
 
     private void zoom(double amount){
         double v = amount * 2;
-        if(zoomTarget + v >= 25){
+        if(zoomTarget + v >= 20){
             zoomTarget += v;
         }
+        System.out.println(zoomTarget);
     }
 }
