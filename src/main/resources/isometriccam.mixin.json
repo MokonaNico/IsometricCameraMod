@@ -5,7 +5,8 @@
   "client": [
     "CameraMixin",
     "IsometricMixin",
-    "RenderPlayerMixin"
+    "RenderPlayerMixin",
+    "MixinFrustumIsometric"
   ],
   "injectors": {
     "defaultRequire": 1

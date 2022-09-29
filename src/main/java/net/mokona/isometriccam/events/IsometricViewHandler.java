@@ -1,10 +1,8 @@
 package net.mokona.isometriccam.events;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderLevelLastEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mokona.isometriccam.utils.IsometricProjection;
 
@@ -73,10 +71,9 @@ public class IsometricViewHandler {
     }
 
     private void zoom(double amount){
-        double v = amount * 2;
-        if(zoomTarget + v >= 20){
+        double v = amount * (Math.pow(zoomTarget,1.05)/22);
+        if(zoomTarget + v > 0){
             zoomTarget += v;
         }
-        System.out.println(zoomTarget);
     }
 }

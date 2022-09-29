@@ -2,7 +2,6 @@ package net.mokona.isometriccam.utils;
 
 import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.phys.Vec3;
 
 public class IsometricProjection {
 
