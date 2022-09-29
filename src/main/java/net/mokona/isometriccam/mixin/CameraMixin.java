@@ -30,7 +30,7 @@ public abstract class  CameraMixin {
         if(IsometricProjection.isometric){
             this.xRot = IsometricProjection.xRot;
             this.yRot = IsometricProjection.yRot;
-            this.position = entity.getPosition(0).add(0,1.7,0);
+            this.position = entity.getPosition(0).add(0,1.6,0);
         }
     }
 }
