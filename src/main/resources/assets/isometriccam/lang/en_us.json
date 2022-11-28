@@ -1,0 +1,10 @@
+{
+  "key.category.isometriccam": "Isometric Cam",
+  "key.isometriccam.enable_iso": "Enable Isometric mode",
+  "key.isometriccam.zoom_in" : "Zoom in",
+  "key.isometriccam.zoom_out": "Zoom out",
+  "key.isometriccam.vertical_rotation_up": "Vertical rotation upward",
+  "key.isometriccam.vertical_rotation_down": "Vertical rotation downward",
+  "key.isometriccam.horizontal_rotation_left": "Horizontal rotation left",
+  "key.isometriccam.horizontal_rotation_right": "Horizontal rotation right"
+}

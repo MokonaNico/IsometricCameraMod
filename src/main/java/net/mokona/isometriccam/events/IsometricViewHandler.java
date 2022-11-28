@@ -5,7 +5,7 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mokona.isometriccam.utils.IsometricProjection;
-
+import net.mokona.isometriccam.utils.KeyBinding;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class IsometricViewHandler {
@@ -17,25 +17,23 @@ public class IsometricViewHandler {
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.Key event) {
-        if (event.getAction() == GLFW_PRESS) {
-            if (event.getKey() == GLFW_KEY_F10) {
-                IsometricProjection.isometric = !IsometricProjection.isometric;
-                MC.smartCull = !IsometricProjection.isometric;
-            }
-            if (IsometricProjection.isometric) {
-                if (event.getKey() == GLFW_KEY_KP_8) {
-                    xRotTarget += 5;
-                } else if (event.getKey() == GLFW_KEY_KP_2) {
-                    xRotTarget -= 5;
-                } else if (event.getKey() == GLFW_KEY_KP_7) {
-                    zoom(5);
-                } else if (event.getKey() == GLFW_KEY_KP_9) {
-                    zoom(-5);
-                } else if (event.getKey() == GLFW_KEY_KP_4) {
-                    yRotTarget += 45;
-                } else if (event.getKey() == GLFW_KEY_KP_6) {
-                    yRotTarget -= 45;
-                }
+        if (KeyBinding.ENABLE_ISO_KEY.consumeClick()) {
+            IsometricProjection.isometric = !IsometricProjection.isometric;
+            MC.smartCull = !IsometricProjection.isometric;
+        }
+        if (IsometricProjection.isometric) {
+            if (KeyBinding.VERTICAL_ROTATION_UP_KEY.consumeClick()) {
+                xRotTarget += 5;
+            } else if (KeyBinding.VERTICAL_ROTATION_DOWN_KEY.consumeClick()) {
+                xRotTarget -= 5;
+            } else if (KeyBinding.ZOOM_OUT_KEY.consumeClick()) {
+                zoom(5);
+            } else if (KeyBinding.ZOOM_IN_KEY.consumeClick()) {
+                zoom(-5);
+            } else if (KeyBinding.HORIZONTAL_ROTATION_LEFT_KEY.consumeClick()) {
+                yRotTarget += 45;
+            } else if (KeyBinding.HORIZONTAL_ROTATION_RIGHT_KEY.consumeClick()) {
+                yRotTarget -= 45;
             }
         }
     }
