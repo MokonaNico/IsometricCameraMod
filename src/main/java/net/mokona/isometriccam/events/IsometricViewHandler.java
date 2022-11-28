@@ -2,7 +2,7 @@ package net.mokona.isometriccam.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.client.event.RenderLevelLastEvent;
+import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.mokona.isometriccam.utils.IsometricProjection;
 
@@ -16,7 +16,7 @@ public class IsometricViewHandler {
     private float yRotTarget = IsometricProjection.yRot;
 
     @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) {
+    public void onKeyInput(InputEvent.Key event) {
         if (event.getAction() == GLFW_PRESS) {
             if (event.getKey() == GLFW_KEY_F10) {
                 IsometricProjection.isometric = !IsometricProjection.isometric;
@@ -41,24 +41,24 @@ public class IsometricViewHandler {
     }
 
     @SubscribeEvent
-    public void onMouseScrollInput(InputEvent.MouseScrollEvent event) {
+    public void onMouseScrollInput(InputEvent.MouseScrollingEvent event) {
         if (IsometricProjection.isometric) {
             zoom(-event.getScrollDelta());
         }
     }
 
     @SubscribeEvent
-    public void onRenderLevelLastEvent(RenderLevelLastEvent event){
+    public void onRenderLevelStageEvent(RenderLevelStageEvent event){
         if(IsometricProjection.isometric){
             if(Math.abs(IsometricProjection.isometricViewLength - zoomTarget) >= 0.01){
-                IsometricProjection.isometricViewLength = lerp(IsometricProjection.isometricViewLength, zoomTarget,0.1f);
+                IsometricProjection.isometricViewLength = lerp(IsometricProjection.isometricViewLength, zoomTarget,0.015f);
                 event.getLevelRenderer().needsUpdate();
             }
             if(Math.abs(IsometricProjection.xRot - xRotTarget) >= 0.01){
-                IsometricProjection.xRot = lerp(IsometricProjection.xRot, xRotTarget,0.1f);
+                IsometricProjection.xRot = lerp(IsometricProjection.xRot, xRotTarget,0.015f);
             }
             if(Math.abs(IsometricProjection.yRot - yRotTarget) >= 0.01){
-                IsometricProjection.yRot = lerp(IsometricProjection.yRot, yRotTarget,0.1f);
+                IsometricProjection.yRot = lerp(IsometricProjection.yRot, yRotTarget,0.015f);
             }
 
         }
