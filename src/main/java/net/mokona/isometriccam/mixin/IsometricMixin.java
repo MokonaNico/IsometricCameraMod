@@ -1,6 +1,6 @@
 package net.mokona.isometriccam.mixin;
 
-import com.mojang.math.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.client.renderer.GameRenderer;
 import net.mokona.isometriccam.utils.IsometricProjection;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class IsometricMixin {
 
     @Inject(
-            method = "getProjectionMatrix(D)Lcom/mojang/math/Matrix4f;",
+            method = "getProjectionMatrix(D)Lorg/joml/Matrix4f;",
             at = @At("HEAD"),
             cancellable = true
     )
